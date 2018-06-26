@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FootballLeague.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +23,12 @@ namespace FootballLeague
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MatchDataContext>(options => 
+            {
+                var connectionString = Configuration.GetConnectionString("MatchDataContext");
+                options.UseSqlServer(connectionString);            
+            });
+            
             services.AddMvc();
         }
 
@@ -43,7 +51,7 @@ namespace FootballLeague
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id:int?}");
             });
         }
     }
