@@ -22,6 +22,7 @@
             <th>
                 Sezona
             </th>
+            <th></th>
         </tr>
     @foreach (var match in Model)
     {
@@ -40,6 +41,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => match.Season)
+            </td>
+            <td>
+                @using (Html.BeginForm(match.Id.ToString(), "Match"))
+                {
+                    <input type="submit" class="btn btn-warning" value="Uredi" />
+                }
             </td>
         </tr>
     }
