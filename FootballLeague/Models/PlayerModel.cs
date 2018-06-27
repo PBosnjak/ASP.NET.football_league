@@ -10,7 +10,7 @@ namespace FootballLeague.Models
         public long Id { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public long ClubId { get; set; }
+        public ClubModel Club { get; set; }
         public string Nationality { get; set; }
         public string Position { get; set; }
     }

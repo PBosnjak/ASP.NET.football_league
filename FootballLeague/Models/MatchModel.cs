@@ -10,11 +10,11 @@ namespace FootballLeague.Models
         public long Id { get; set; }
         public string Season { get; set; }
         public DateTime Date { get; set; }
-        public long HomeTeamId { get; set; }
-        public long AwayTeamId { get; set; }
+        public ClubModel HomeTeam { get; set; }
+        public ClubModel AwayTeam { get; set; }
         public int HomeTeamGoals { get; set; }
         public int AwayTeamGoals { get; set; }
-        public long RefereeId { get; set; }
+        public RefereeModel Referee { get; set; }
         public int HomeTeamRedCards { get; set; }
         public int HomeTeamYellowCards { get; set; }
         public int AwayTeamRedCards { get; set; }

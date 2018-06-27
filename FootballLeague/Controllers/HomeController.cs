@@ -23,8 +23,7 @@ namespace FootballLeague.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            //var clubs = _db.Clubs.ToArray();
             return View();
         }
 

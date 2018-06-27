@@ -1,7 +1,13 @@
-﻿@{
+﻿@model IEnumerable<FootballLeague.Models.ClubModel>
+@{
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<div>
+    @foreach (var club in Model)
+    {
+        @club.Name
+        <br />
+    }
+</div>
