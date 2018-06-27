@@ -10,9 +10,9 @@ namespace FootballLeague.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly MatchDataContext _db;
+        private readonly DataContext _db;
 
-        public HomeController(MatchDataContext db)
+        public HomeController(DataContext db)
         {
             _db = db;
         }
@@ -43,10 +43,6 @@ namespace FootballLeague.Controllers
         [Route("/create")]
         public IActionResult Create()
         {
-            var matches = _db.GetMatchData();
-            foreach (var match in matches)
-                _db.Matches.Add(match);
-            _db.SaveChanges(); 
             return View("About");
         }
     }

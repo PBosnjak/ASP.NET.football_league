@@ -23,9 +23,9 @@ namespace FootballLeague
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MatchDataContext>(options => 
+            services.AddDbContext<DataContext>(options => 
             {
-                var connectionString = Configuration.GetConnectionString("MatchDataContext");
+                var connectionString = Configuration.GetConnectionString("DataContext");
                 options.UseSqlServer(connectionString);            
             });
             
