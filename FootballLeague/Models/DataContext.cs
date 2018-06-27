@@ -20,5 +20,6 @@ namespace FootballLeague.Models
         {
             Database.EnsureCreated();
         }
+
     }
 }
