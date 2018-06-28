@@ -69,13 +69,30 @@ namespace FootballLeague.Controllers
             return View(p.OrderByDescending(x => x.CurrentPoints));
         }
 
-        public IActionResult Results()
+        public IActionResult Results(int page = 0)
         {
-            var p = _db.Matches
-                .Include(x => x.HomeTeam)
-                .Include(x => x.AwayTeam);
+            var pageSize = 10;
+            var totalPosts = _db.Matches.Count();
+            var totalPages = totalPosts / pageSize;
+            var previousPage = page - 1;
+            var nextPage = page + 1;
 
-                
+            ViewBag.PreviousPage = previousPage;
+            ViewBag.HasPreviousPage = previousPage >= 0;
+            ViewBag.NextPage = nextPage;
+            ViewBag.HasNextPage = nextPage < totalPages;
+
+            var p = _db.Matches
+                .OrderByDescending(x => x.Date)
+                .Include(x => x.HomeTeam)
+                .Include(x => x.AwayTeam)
+                .Skip(pageSize * page)
+                .Take(pageSize)
+                .ToList();
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView(p);
+
             return View(p);
         }
 

@@ -4,6 +4,22 @@
 }
 <h2>@ViewData["Title"]</h2>
 
+<p class="pager">
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="btn btn-primary navbar-brand" href="@Url.Action("Results", "Home", new { page = ViewBag.PreviousPage })">
+            &lt; Nazad
+        </a>
+    }
+
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="btn btn-primary navbar-brand"  href="@Url.Action("Results", "Home", new { page = ViewBag.NextPage })">
+            Naprijed &gt;
+        </a>
+    }
+</p>
+
 <div>
     <table class="table">
         <tr>
@@ -24,32 +40,10 @@
             </th>
             <th></th>
         </tr>
-    @foreach (var match in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => match.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => match.HomeTeam.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => match.HomeTeamGoals) :  @Html.DisplayFor(modelItem => match.AwayTeamGoals)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => match.AwayTeam.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => match.Season)
-            </td>
-            <td>
-                @using (Html.BeginForm(match.Id.ToString(), "Match"))
-                {
-                    <input type="submit" class="btn" value="Detalji" />
-                }
-            </td>
-        </tr>
-    }
+        @foreach (var match in Model)
+        {
+            @Html.Partial("_Match", match)
+        }
     </table>
 
 </div>

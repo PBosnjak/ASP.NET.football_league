@@ -1,0 +1,29 @@
+﻿@model FootballLeague.Models.MatchModel
+@{
+    ViewData["Title"] = "_Match";
+}
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.HomeTeam.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.HomeTeamGoals) :  @Html.DisplayFor(modelItem => Model.AwayTeamGoals)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.AwayTeam.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Season)
+    </td>
+    <td>
+        @using (Html.BeginForm(Model.Id.ToString(), "Match"))
+        {
+            <input type="submit" class="btn" value="Detalji" />
+        }
+    </td>
+</tr>
+

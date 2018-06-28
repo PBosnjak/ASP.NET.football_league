@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FootballLeague.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +29,15 @@ namespace FootballLeague
                 var connectionString = Configuration.GetConnectionString("DataContext");
                 options.UseSqlServer(connectionString);            
             });
-            
+
+            services.AddDbContext<DataContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("IdentityDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
+            services.AddIdentity<IdentityUser, IdentityRole>();
+
             services.AddMvc();
         }
 
@@ -46,6 +55,10 @@ namespace FootballLeague
             }
 
             app.UseStaticFiles();
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            app.UseIdentity();
+#pragma warning restore CS0618 // Type or member is obsolete
 
             app.UseMvc(routes =>
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FootballLeague.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,6 +41,19 @@ namespace FootballLeague.Controllers
                 .Single(m => m.Id == id);
 
             return View(CGVM);
+        }
+
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Create(MatchModel match)
+        {
+            return View();
         }
     }
 }

@@ -36,14 +36,15 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div id="mainContent" class="container body-content">
         @RenderBody()
+    </div>
+    <div class="container body-content">
         <hr />
         <footer>
             <p>&copy; 2018 - FootballLeague</p>
         </footer>
     </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
