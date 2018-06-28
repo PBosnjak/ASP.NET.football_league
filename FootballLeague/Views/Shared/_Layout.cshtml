@@ -29,9 +29,26 @@
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">FootballLeague</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Results">Rezultati</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li>                       
+                        <form id="logout" action="@Url.Action("Logout", "Account")" method="POST">
+                            <a href="javascript: $('#logout').submit()">
+                                Logout
+                            </a>
+                        </form>
+                    </li>
+
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
                 </ul>
             </div>
         </div>

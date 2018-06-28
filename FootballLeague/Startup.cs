@@ -30,13 +30,14 @@ namespace FootballLeague
                 options.UseSqlServer(connectionString);            
             });
 
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<IdentityDataContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("IdentityDataContext");
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddIdentity<IdentityUser, IdentityRole>();
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityDataContext>();
 
             services.AddMvc();
         }
