@@ -1,8 +1,107 @@
-﻿
+﻿@model FootballLeague.Models.CardGoalViewModel
 @{
     ViewData["Title"] = "Index";
 }
+<div>
+    <h2>Detalji utakmice</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Domaćin : @Html.DisplayFor(modelItem => Model.Match.HomeTeam.Name)
+        </li>
+        <li class="list-group-item">
+            Gost:  @Html.DisplayFor(modelItem => Model.Match.AwayTeam.Name)
+        </li>
+        <li class="list-group-item">
+            Rezultat: @Html.DisplayFor(modelItem => Model.Match.HomeTeamGoals) : @Html.DisplayFor(modelItem => Model.Match.AwayTeamGoals)
+        </li>
+        <li class="list-group-item">
+            Sudac: @Html.DisplayFor(modelItem => Model.Match.Referee.Firstname) @Html.DisplayFor(modelItem => Model.Match.Referee.Lastname)
+        </li>
+        <li class="list-group-item">
+            Datum: @Html.DisplayFor(modelItem => Model.Match.Date)
+        </li>
+        <li class="list-group-item">
+            Sezona: @Html.DisplayFor(modelItem => Model.Match.Season)
+        </li>
+    </ul>
+</div>
 
-<h2>Index</h2>
+@if ((Model.Goals != null) && (Model.Goals.Any()))
+{
+    <h4>Golovi</h4>
+    <table class="table-condensed">
+        <tr>
+            <th>
+                Ime igrača
+            </th>
+            <th>
+                Klub
+            </th>
+            <th>
+                Minuta
+            </th>
+            <th>
+        </tr>
+        @foreach (var item in Model.Goals)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.Firstname) @Html.DisplayFor(modelItem => item.Player.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.Club.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minute)
+                </td>
+            </tr>
+        }
+    </table>
+}
 
-@ViewData["id"]
+@if ((Model.Cards != null) && (Model.Cards.Any()))
+{
+    <h4>Kartoni</h4>
+    <table class="table-condensed">
+        <tr>
+            <th>
+                Ime igrača
+            </th>
+            <th>
+                Klub
+            </th>
+            <th>
+                Karton
+            </th>
+            <th>
+                Minuta
+            </th>
+            <th>
+        </tr>
+        @foreach (var item in Model.Cards)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.Firstname) @Html.DisplayFor(modelItem => item.Player.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Player.Club.Name)
+                </td>
+                <td>
+                    @if (item.Type.ToString() == "y")
+                    {
+                        @Html.Raw("Žuti")
+                    }
+                    else
+                    {
+                        @Html.Raw("Crveni")
+                    }
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minute)
+                </td>
+            </tr>
+        }
+    </table>
+}
