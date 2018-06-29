@@ -9,6 +9,8 @@ namespace FootballLeague.Models
     {
         public IEnumerable<GoalModel> Goals { get; set; }
         public IEnumerable<CardModel> Cards { get; set; }
+        public IEnumerable<ClubModel> Clubs { get; set; }
+        public IEnumerable<PlayerModel> Players { get; set; }
         public MatchModel Match { get; set; }
     }
 }

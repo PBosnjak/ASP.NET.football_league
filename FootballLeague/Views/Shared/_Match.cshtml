@@ -25,5 +25,14 @@
             <input type="submit" class="btn" value="Detalji" />
         }
     </td>
+    @if (User.IsInRole("admin"))
+    {
+        <td>
+            @using (Html.BeginForm(Model.Id.ToString(), "Edit"))
+            {
+                <input type="submit" class="btn btn-warning" value="Uredi" />
+            }
+        </td>
+    }
 </tr>
 

@@ -43,17 +43,86 @@ namespace FootballLeague.Controllers
             return View(CGVM);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
-            return View();
+            CardGoalViewModel CGVM = new CardGoalViewModel();
+            CGVM.Clubs = _db.Clubs;            
+            return View(CGVM);
         }
 
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpPost]
-        public IActionResult Create(MatchModel match)
+        public IActionResult Details(CardGoalViewModel CGVM)
         {
-            return View();
+            CGVM.Match.Date = DateTime.Now;
+            CGVM.Match.RefereeId = 1;
+            CGVM.Match.Season = "2017/18";
+            _db.Matches.Add(CGVM.Match);
+            _db.SaveChanges();
+
+            CGVM.Players = _db.Players
+                .Where(p => (p.ClubId == CGVM.Match.HomeTeamId || p.ClubId == CGVM.Match.AwayTeamId))
+                .ToList();
+            return View(CGVM);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public IActionResult Insert(
+            long[] HomeTeamPlayer, 
+            long[] AwayTeamPlayer, 
+            int[] MinuteHome, 
+            int[] HalftimeHome,
+            int[] MinuteAway,
+            int[] HalftimeAway
+            )
+        {
+            int Counter = 0;
+            int HomeTeamGoals = 0;
+            int AwayTeamGoals = 0;
+            var LastDbEntry = _db.Matches.Last();
+
+            foreach (var item in HomeTeamPlayer)
+            {
+                HomeTeamGoals++;
+
+                var Goal = new GoalModel
+                {
+                    MatchId = LastDbEntry.Id,
+                    PlayerId = item,
+                    Minute = MinuteHome[Counter],
+                    Halftime = HalftimeHome[Counter]
+                };
+                Counter++;
+                _db.Goals.Add(Goal);
+
+            }
+
+            Counter = 0;
+
+            foreach (var item in AwayTeamPlayer)
+            {
+                AwayTeamGoals++;
+
+                var Goal = new GoalModel
+                {
+                    MatchId = LastDbEntry.Id,
+                    PlayerId = item,
+                    Minute = MinuteAway[Counter],
+                    Halftime = HalftimeAway[Counter]
+                };
+                Counter++;
+                _db.Goals.Add(Goal);
+
+            }
+
+
+            LastDbEntry.HomeTeamGoals = HomeTeamGoals;
+            LastDbEntry.AwayTeamGoals = AwayTeamGoals;
+            _db.SaveChanges();
+
+            return Redirect("/");
         }
     }
 }

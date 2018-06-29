@@ -14,12 +14,19 @@
 
     @if (ViewBag.HasNextPage)
     {
-        <a class="btn btn-primary navbar-brand"  href="@Url.Action("Results", "Home", new { page = ViewBag.NextPage })">
+        <a class="btn btn-primary navbar-brand" href="@Url.Action("Results", "Home", new { page = ViewBag.NextPage })">
             Naprijed &gt;
         </a>
     }
 </p>
-
+<div>
+    @if (User.IsInRole("admin"))
+    {
+        <a class="btn btn-primary navbar-brand" href="@Url.Action("Create", "Match")">
+            Dodaj
+        </a>
+    }
+</div>
 <div>
     <table class="table">
         <tr>
@@ -39,6 +46,10 @@
                 Sezona
             </th>
             <th></th>
+            @if (User.IsInRole("admin"))
+            {
+                <th></th>
+            }
         </tr>
         @foreach (var match in Model)
         {

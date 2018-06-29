@@ -1,0 +1,43 @@
+﻿@model FootballLeague.Models.CardGoalViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalji utakmice</h2>
+
+<form role="form" asp-action="Insert">
+
+    <div class="form-group">
+        <h4>Domaćin</h4>
+        @foreach (var item in Model.Players)
+        {
+            @if (item.ClubId == Model.Match.HomeTeamId)
+            {
+                @item.Firstname @item.Lastname
+                <input type="checkbox" name="HomeTeamPlayer[]" value="@item.Id" />
+                <input type="text" name="MinuteHome[]"  />
+                <input type="text" name="HalftimeHome[]" />
+                <br />
+            }
+        }
+    </div>
+    <div class="form-group">
+        <h4>Gost</h4>
+        @foreach (var item in Model.Players)
+        {
+            @if (item.ClubId == Model.Match.AwayTeamId)
+            {
+                @item.Firstname @item.Lastname
+                <input type="checkbox" name="AwayTeamPlayer[]" value="@item.Id" />
+                <input type="text" name="MinuteAway[]" />
+                <input type="text" name="HalftimeAway[]" />
+                <br />
+            }
+        }
+    </div>
+    <div>
+        <label>&nbsp;</label>
+        <button type="submit" class="btn btn-primary">Spremi</button>
+    </div>
+
+</form>
