@@ -28,7 +28,7 @@
     @if (User.IsInRole("admin"))
     {
         <td>
-            @using (Html.BeginForm(Model.Id.ToString(), "Edit"))
+            @using (Html.BeginForm("Edit/" + Model.Id.ToString(), "Match", FormMethod.Get))
             {
                 <input type="submit" class="btn btn-warning" value="Uredi" />
             }

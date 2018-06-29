@@ -9,31 +9,93 @@
 
     <div class="form-group">
         <h4>Domaćin</h4>
-        @foreach (var item in Model.Players)
-        {
-            @if (item.ClubId == Model.Match.HomeTeamId)
+        <table class="table">
+            <tr>
+                <th>
+                    Ime
+                </th>
+                <th>
+                    Gol
+                </th>
+                <th>
+                    Minuta
+                </th>
+                <th>
+                    Poluvrijeme
+                </th>
+                <th>
+                    Porazi
+                </th>
+                <th>
+                    Bodovi
+                </th>
+            </tr>
+            @foreach (var item in Model.Players)
             {
-                @item.Firstname @item.Lastname
-                <input type="checkbox" name="HomeTeamPlayer[]" value="@item.Id" />
-                <input type="text" name="MinuteHome[]"  />
-                <input type="text" name="HalftimeHome[]" />
-                <br />
+                @if (item.ClubId == Model.Match.HomeTeamId)
+                {
+                <tr>
+                    <td>
+                        @item.Firstname @item.Lastname
+                    </td>
+                    <td>
+                        <input type="checkbox" name="HomeTeamPlayer[]" value="@item.Id" />
+                    </td>
+                    <td>
+                        <input type="text" name="MinuteHome[]" />
+                    </td>
+                    <td>
+                        <input type="text" name="HalftimeHome[]" />
+                    </td>
+                </tr>
+                }
             }
-        }
+        </table>
     </div>
     <div class="form-group">
         <h4>Gost</h4>
-        @foreach (var item in Model.Players)
-        {
-            @if (item.ClubId == Model.Match.AwayTeamId)
+        <table class="table">
+            <tr>
+                <th>
+                    Ime
+                </th>
+                <th>
+                    Gol
+                </th>
+                <th>
+                    Minuta
+                </th>
+                <th>
+                    Poluvrijeme
+                </th>
+                <th>
+                    Porazi
+                </th>
+                <th>
+                    Bodovi
+                </th>
+            </tr>
+            @foreach (var item in Model.Players)
             {
-                @item.Firstname @item.Lastname
-                <input type="checkbox" name="AwayTeamPlayer[]" value="@item.Id" />
-                <input type="text" name="MinuteAway[]" />
-                <input type="text" name="HalftimeAway[]" />
-                <br />
+                @if (item.ClubId == Model.Match.AwayTeamId)
+                {
+                    <tr>
+                        <td>
+                            @item.Firstname @item.Lastname
+                        </td>
+                        <td>
+                            <input type="checkbox" name="AwayTeamPlayer[]" value="@item.Id" />
+                        </td>
+                        <td>
+                            <input type="text" name="MinuteAway[]" />
+                        </td>
+                        <td>
+                            <input type="text" name="HalftimeAway[]" />
+                        </td>
+                    </tr>
+                }
             }
-        }
+        </table>
     </div>
     <div>
         <label>&nbsp;</label>

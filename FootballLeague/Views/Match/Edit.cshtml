@@ -1,0 +1,39 @@
+﻿@model FootballLeague.Models.CardGoalViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<form role="form" asp-action="Edit">
+
+    <div asp-validation-summary="All" class="input-validation-error"></div>
+    <input type="hidden" asp-for="Match.Id" value="@Model.Match.Id" />
+    <div class="form-group">
+        <label asp-for="Match.HomeTeamId">Domaćin</label>
+        <select asp-for="Match.HomeTeamId">
+            @foreach (var item in Model.Clubs)
+            {
+                <option value="@Html.Raw(item.Id)">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Match.AwayTeamId">Gost</label>
+        <select asp-for="Match.AwayTeamId">
+            @foreach (var item in Model.Clubs)
+            {
+                <option value="@Html.Raw(item.Id)">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>&nbsp;</label>
+        <button type="submit" class="btn btn-primary">Dalje</button>
+    </div>
+
+</form>
