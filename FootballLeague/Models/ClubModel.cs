@@ -13,6 +13,8 @@ namespace FootballLeague.Models
         public string Name { get; set; }
         public string Country { get; set; }
 
+        public IEnumerable<MatchModel> Matches { get; set; }
+
         [NotMapped]
         public int CurrentPoints { get; set; }
         [NotMapped]

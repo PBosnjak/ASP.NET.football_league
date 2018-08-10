@@ -15,6 +15,8 @@ namespace FootballLeague.Models
         public long ClubId { get; set; }
 
         public virtual ClubModel Club { get; set; }
+        public virtual IEnumerable<CardModel> Cards { get; set; }
+        public virtual IEnumerable<GoalModel> Goals { get; set; }
 
     }
 }

@@ -21,5 +21,25 @@ namespace FootballLeague.Models
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<MatchModel>()
+                .HasOne(c => c.HomeTeam)
+                .WithMany(m => m.Matches)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CardModel>()
+                .HasOne(p => p.Player)
+                .WithMany(c => c.Cards)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<GoalModel>()
+                .HasOne(p => p.Player)
+                .WithMany(g => g.Goals)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
+
     }
 }
