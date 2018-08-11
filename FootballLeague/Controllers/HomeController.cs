@@ -73,7 +73,7 @@ namespace FootballLeague.Controllers
         {
             var pageSize = 10;
             var totalPosts = _db.Matches.Count();
-            var totalPages = totalPosts / pageSize;
+            var totalPages = totalPosts / pageSize + 1;
             var previousPage = page - 1;
             var nextPage = page + 1;
 
