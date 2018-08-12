@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.Models
 {
-    public class RefereeModel
+    public class RefereeModel : BaseModel
     {
         public long Id { get; set; }
         public string Firstname { get; set; }

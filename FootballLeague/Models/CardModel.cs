@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.Models
 {
-    public class CardModel
+    public class CardModel : BaseModel
     {
         public long Id { get; set; }
         public string Type { get; set; }

@@ -41,5 +41,26 @@ namespace FootballLeague.Models
 
         }
 
+        public override int SaveChanges()
+        {
+            AddTimestamps();
+            return base.SaveChanges();
+        }
+
+        private void AddTimestamps()
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseModel && (x.State == EntityState.Added || x.State == EntityState.Modified));
+
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((BaseModel)entity.Entity).DateCreated = DateTime.UtcNow;
+                }
+
+                ((BaseModel)entity.Entity).DateModified = DateTime.UtcNow;
+            }
+        }
+
     }
 }

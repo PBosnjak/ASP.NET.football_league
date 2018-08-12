@@ -56,7 +56,6 @@ namespace FootballLeague.Controllers
         [HttpPost]
         public IActionResult Details(DataViewModel Model)
         {
-            Model.Match.Date = DateTime.Now;
             Model.Match.Season = "2017/18";
             _db.Matches.Add(Model.Match);
             _db.SaveChanges();
@@ -124,6 +123,11 @@ namespace FootballLeague.Controllers
                match.AwayTeamYellowCards == Model.Match.AwayTeamYellowCards
                )
             {
+                if (match.RefereeId != Model.Match.RefereeId)
+                {
+                    match.RefereeId = Model.Match.RefereeId;
+                    _db.SaveChanges();
+                }
                 DataViewModel DataModel = new DataViewModel();
                 DataModel = Model;
                 DataModel.Players = _db.Players
