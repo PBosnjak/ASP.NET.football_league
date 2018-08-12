@@ -1,0 +1,187 @@
+﻿@model FootballLeague.Models.DataViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalji utakmice</h2>
+
+<form role="form" asp-action="Update">
+    <h3>Domaćin golovi</h3>
+    <div class="form-group">
+        @for (var i = 0; i < Model.Match.HomeTeamGoals; i++)
+        {
+
+            <input type="hidden" asp-for="Goals[i].MatchId" value="@Model.Match.Id" />
+
+            <label asp-for="Goals[i].PlayerId">Strijelac pogotka:</label>
+            <select asp-for="Goals[i].PlayerId">
+                @foreach (var item in Model.Players)
+                {
+                    @if (item.ClubId == Model.Match.HomeTeamId)
+                    {
+                        <option value="@Html.Raw(item.Id)">
+                            @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                        </option>
+                    }
+                }
+            </select>
+            <label asp-for="Goals[i].Minute">Minuta:</label>
+            <input type="number" asp-for="Goals[i].Minute" />
+            <label asp-for="Goals[i].Halftime">Poluvrijeme:</label>
+            <select asp-for="Goals[i].Halftime">
+                <option value="1">1.</option>
+                <option value="2">2.</option>
+            </select>
+            <input type="hidden" asp-for="Goals[i].Id" value="@Model.Goals[i].Id" />
+            <br />
+        }
+    </div>
+    <h3>Domaćin žuti kartoni</h3>
+    <div class="form-group">
+        @for (var i = 0; i < Model.Match.HomeTeamYellowCards; i++)
+        {
+            <input type="hidden" asp-for="Cards[i].MatchId" value="@Model.Match.Id" />
+            <input type="hidden" asp-for="Cards[i].Type" value="y" />
+
+            <label asp-for="Cards[i].PlayerId">Žuti karton</label>
+            <select asp-for="Cards[i].PlayerId">
+                @foreach (var item in Model.Players)
+                {
+                    @if (item.ClubId == Model.Match.HomeTeamId)
+                    {
+                        <option value="@Html.Raw(item.Id)">
+                            @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                        </option>
+
+                    }
+                }
+            </select>
+            <label asp-for="Cards[i].Minute">Minuta:</label>
+            <input type="number" asp-for="Cards[i].Minute" />
+            <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
+            <br />
+        }
+    </div>
+    <h3>Domaćin crveni kartoni</h3>
+    <div class="form-group">
+        @for (var i = Model.Match.HomeTeamYellowCards; i < (Model.Match.HomeTeamRedCards + Model.Match.HomeTeamYellowCards); i++)
+        {
+            <input type="hidden" asp-for="Cards[i].MatchId" value="@Model.Match.Id" />
+            <input type="hidden" asp-for="Cards[i].Type" value="r" />
+
+            <label asp-for="Cards[i].PlayerId">Crveni karton</label>
+            <select asp-for="Cards[i].PlayerId">
+                @foreach (var item in Model.Players)
+                {
+                    @if (item.ClubId == Model.Match.HomeTeamId)
+                    {
+                        <option value="@Html.Raw(item.Id)">
+                            @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                        </option>
+                    }
+                }
+            </select>
+            <label asp-for="Cards[i].Minute">Minuta:</label>
+            <input type="number" asp-for="Cards[i].Minute" />
+            <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
+            <br />
+        }
+
+    </div>    
+      @{
+          var goalStartPoint = Model.Match.HomeTeamGoals;
+          var goalEndPoint = Model.Match.HomeTeamGoals + Model.Match.AwayTeamGoals;
+          var yellowCardStartPoint = Model.Match.HomeTeamRedCards + Model.Match.HomeTeamYellowCards;
+          var yellowCardEndPoint = yellowCardStartPoint + Model.Match.AwayTeamYellowCards;
+          var redCardStartPoint = yellowCardEndPoint;
+          var redCardEndPoint = redCardStartPoint + Model.Match.AwayTeamRedCards;
+      }
+      <h3>Gost golovi</h3>
+      <div class="form-group">
+          @for (var i = goalStartPoint; i < goalEndPoint; i++)
+          {
+
+              <input type="hidden" asp-for="Goals[i].MatchId" value="@Model.Match.Id" />
+
+              <label asp-for="Goals[i].PlayerId">Strijelac pogotka</label>
+              <select asp-for="Goals[i].PlayerId">
+                  @foreach (var item in Model.Players)
+                  {
+                      @if (item.ClubId == Model.Match.AwayTeamId)
+                      {
+                          <option value="@Html.Raw(item.Id)">
+                              @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                          </option>
+
+                      }
+                  }
+              </select>
+              <label asp-for="Goals[i].Minute">Minuta:</label>
+              <input type="number" asp-for="Goals[i].Minute" />
+              <label asp-for="Goals[i].Halftime">Poluvrijeme:</label>
+              <select asp-for="Goals[i].Halftime">
+                  <option value="1">1.</option>
+                  <option value="2">2.</option>
+              </select>
+              <input type="hidden" asp-for="Goals[i].Id" value="@Model.Goals[i].Id" />
+              <br />
+          }
+      </div>
+      <h3>Gost žuti kartoni</h3>
+      <div class="form-group">
+          @for (var i = yellowCardStartPoint; i < yellowCardEndPoint; i++)
+          {
+              <input type="hidden" asp-for="Cards[i].MatchId" value="@Model.Match.Id" />
+              <input type="hidden" asp-for="Cards[i].Type" value="y" />
+
+              <label asp-for="Cards[i].PlayerId">Žuti karton</label>
+              <select asp-for="Cards[i].PlayerId">
+                  @foreach (var item in Model.Players)
+                  {
+                      @if (item.ClubId == Model.Match.AwayTeamId)
+                      {
+                          <option value="@Html.Raw(item.Id)">
+                              @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                          </option>
+
+                      }
+                  }
+              </select>
+              <label asp-for="Cards[i].Minute">Minuta:</label>
+              <input type="number" asp-for="Cards[i].Minute" />
+              <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
+              <br />
+          }
+      </div>
+      <h3>Gost crveni kartoni</h3>
+      <div class="form-group">
+          @for (var i = redCardStartPoint; i < redCardEndPoint; i++)
+          {
+              <input type="hidden" asp-for="Cards[i].MatchId" value="@Model.Match.Id" />
+              <input type="hidden" asp-for="Cards[i].Type" value="r" />
+
+              <label asp-for="Cards[i].PlayerId">Crveni karton</label>
+              <select asp-for="Cards[i].PlayerId">
+                  @foreach (var item in Model.Players)
+                  {
+                      @if (item.ClubId == Model.Match.AwayTeamId)
+                      {
+                          <option value="@Html.Raw(item.Id)">
+                              @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                          </option>
+                      }
+                  }
+              </select>
+              <label asp-for="Cards[i].Minute">Minuta:</label>
+              <input type="number" asp-for="Cards[i].Minute" />
+              <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
+              <br />
+          }
+      </div>
+      <div class="form-group">
+          <label>&nbsp;</label>
+          <button type="submit" class="btn btn-primary">Gotovo</button>
+      </div>
+              
+</form>
+

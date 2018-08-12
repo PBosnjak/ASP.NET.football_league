@@ -25,5 +25,7 @@ namespace FootballLeague.Models
         public virtual ClubModel HomeTeam { get; set; }
         public virtual ClubModel AwayTeam { get; set; }
         public virtual RefereeModel Referee { get; set; }
+        public virtual IEnumerable<GoalModel> Goals { get; set; }
+        public virtual IEnumerable<CardModel> Cards { get; set; }
     }
 }

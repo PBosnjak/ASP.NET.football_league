@@ -1,10 +1,10 @@
-﻿@model FootballLeague.Models.CardGoalViewModel
+﻿@model FootballLeague.Models.DataViewModel
 @{
     ViewData["Title"] = "Create";
 }
 
 
-<form role="form" asp-action="Edit">
+<form role="form" asp-action="EditDetails">
 
     <div asp-validation-summary="All" class="input-validation-error"></div>
     <input type="hidden" asp-for="Match.Id" value="@Model.Match.Id" />
@@ -18,6 +18,15 @@
                 </option>
             }
         </select>
+        <br />
+        <label asp-for="Match.HomeTeamGoals">Domaćin količina golova</label>
+        <input asp-for="Match.HomeTeamGoals" type="number"  />
+        <br />
+        <label asp-for="Match.HomeTeamYellowCards">Domaćin količina žutih kartona</label>
+        <input asp-for="Match.HomeTeamYellowCards" type="number" />
+        <br />
+        <label asp-for="Match.HomeTeamRedCards">Domaćin količina crvenih kartona</label>
+        <input asp-for="Match.HomeTeamRedCards" type="number" />
     </div>
 
     <div class="form-group">
@@ -30,10 +39,31 @@
                 </option>
             }
         </select>
+        <br />
+        <label asp-for="Match.AwayTeamGoals">Gost količina golova</label>
+        <input asp-for="Match.AwayTeamGoals" type="number" />
+        <br />
+        <label asp-for="Match.AwayTeamYellowCards">Gost količina žutih kartona</label>
+        <input asp-for="Match.AwayTeamYellowCards" type="number" />
+        <br />
+        <label asp-for="Match.AwayTeamRedCards">Gost količina crvenih kartona</label>
+        <input asp-for="Match.AwayTeamRedCards" type="number" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Match.RefereeId">Sudac</label>
+        <select asp-for="Match.RefereeId">
+            @foreach (var item in Model.Referees)
+            {
+                <option value="@Html.Raw(item.Id)">
+                    @Html.DisplayFor(modelItem => item.Firstname) @Html.DisplayFor(modelItem => item.Lastname)
+                </option>
+            }
+        </select>
     </div>
     <div>
         <label>&nbsp;</label>
         <button type="submit" class="btn btn-primary">Dalje</button>
     </div>
+
 
 </form>

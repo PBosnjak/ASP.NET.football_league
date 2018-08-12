@@ -34,5 +34,14 @@
             }
         </td>
     }
+    @if (User.IsInRole("admin"))
+    {
+        <td>
+            @using (Html.BeginForm("Delete/" + Model.Id.ToString(), "Match", FormMethod.Post))
+            {
+                <input type="submit" class="btn btn-danger" value="Obriši" />
+            }
+        </td>
+    }
 </tr>
 
