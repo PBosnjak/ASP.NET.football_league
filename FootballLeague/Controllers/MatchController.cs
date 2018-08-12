@@ -200,14 +200,8 @@ namespace FootballLeague.Controllers
             var cards = _db.Cards.Where(c => c.MatchId == id);
             var goals = _db.Goals.Where(g => g.MatchId == id);
 
-            foreach (var card in cards)
-            {
-                _db.Cards.Remove(card);
-            }
-            foreach (var goal in goals)
-            {
-                _db.Goals.Remove(goal);
-            }
+            _db.Cards.RemoveRange(cards);
+            _db.Goals.RemoveRange(goals);
             _db.Matches.Remove(match);
             _db.SaveChanges();
             return Redirect("/Home/Results");

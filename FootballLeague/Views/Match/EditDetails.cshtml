@@ -26,7 +26,7 @@
                 }
             </select>
             <label asp-for="Goals[i].Minute">Minuta:</label>
-            <input type="number" asp-for="Goals[i].Minute" />
+            <input type="number" asp-for="Goals[i].Minute" min="1" max="130"/>
             <label asp-for="Goals[i].Halftime">Poluvrijeme:</label>
             <select asp-for="Goals[i].Halftime">
                 <option value="1">1.</option>
@@ -57,7 +57,7 @@
                 }
             </select>
             <label asp-for="Cards[i].Minute">Minuta:</label>
-            <input type="number" asp-for="Cards[i].Minute" />
+            <input type="number" asp-for="Cards[i].Minute" min="1" max="130"/>
             <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
             <br />
         }
@@ -82,7 +82,7 @@
                 }
             </select>
             <label asp-for="Cards[i].Minute">Minuta:</label>
-            <input type="number" asp-for="Cards[i].Minute" />
+            <input type="number" asp-for="Cards[i].Minute" min="1" max="130"/>
             <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
             <br />
         }
@@ -117,7 +117,7 @@
                   }
               </select>
               <label asp-for="Goals[i].Minute">Minuta:</label>
-              <input type="number" asp-for="Goals[i].Minute" />
+              <input type="number" asp-for="Goals[i].Minute" min="1" max="130"/>
               <label asp-for="Goals[i].Halftime">Poluvrijeme:</label>
               <select asp-for="Goals[i].Halftime">
                   <option value="1">1.</option>
@@ -148,7 +148,7 @@
                   }
               </select>
               <label asp-for="Cards[i].Minute">Minuta:</label>
-              <input type="number" asp-for="Cards[i].Minute" />
+              <input type="number" asp-for="Cards[i].Minute" min="1" max="130"/>
               <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
               <br />
           }
@@ -173,7 +173,7 @@
                   }
               </select>
               <label asp-for="Cards[i].Minute">Minuta:</label>
-              <input type="number" asp-for="Cards[i].Minute" />
+              <input type="number" asp-for="Cards[i].Minute" min="1" max="130"/>
               <input type="hidden" asp-for="Cards[i].Id" value="@Model.Cards[i].Id" />
               <br />
           }

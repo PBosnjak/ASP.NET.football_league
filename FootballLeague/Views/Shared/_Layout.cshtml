@@ -37,8 +37,8 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                     <li>                       
-                        <form id="logout" action="@Url.Action("Logout", "Account")" method="POST">
-                            <a href="javascript: $('#logout').submit()">
+                        <form  id="logout" action="@Url.Action("Logout", "Account")" method="POST">
+                            <a id="logout-a" style="display: block;padding-top:15px;color: #9d9d9d;" href="javascript: $('#logout').submit()">
                                 Logout
                             </a>
                         </form>

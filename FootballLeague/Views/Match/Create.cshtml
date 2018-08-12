@@ -20,13 +20,13 @@
         </select>
         <br />
         <label asp-for="Match.HomeTeamGoals">Domaćin količina golova</label>
-        <input asp-for="Match.HomeTeamGoals" type="number" />
+        <input asp-for="Match.HomeTeamGoals" type="number" min="0"/>
         <br />
         <label asp-for="Match.HomeTeamYellowCards">Domaćin količina žutih kartona</label>
-        <input asp-for="Match.HomeTeamYellowCards" type="number" />
+        <input asp-for="Match.HomeTeamYellowCards" type="number" min="0"/>
         <br />
         <label asp-for="Match.HomeTeamRedCards">Domaćin količina crvenih kartona</label>
-        <input asp-for="Match.HomeTeamRedCards" type="number" />
+        <input asp-for="Match.HomeTeamRedCards" type="number" min="0" max="50" />
     </div>
 
     <div class="form-group">
@@ -41,13 +41,13 @@
         </select>
         <br />
         <label asp-for="Match.AwayTeamGoals">Gost količina golova</label>
-        <input asp-for="Match.AwayTeamGoals" type="number" />
+        <input asp-for="Match.AwayTeamGoals" type="number" min="0"/>
         <br />
         <label asp-for="Match.AwayTeamYellowCards">Gost količina žutih kartona</label>
-        <input asp-for="Match.AwayTeamYellowCards" type="number" />
+        <input asp-for="Match.AwayTeamYellowCards" type="number" min="0"/>
         <br />
         <label asp-for="Match.AwayTeamRedCards">Gost količina crvenih kartona</label>
-        <input asp-for="Match.AwayTeamRedCards" type="number" />
+        <input asp-for="Match.AwayTeamRedCards" type="number" min="0"/>
     </div>
     <div class="form-group">
         <label asp-for="Match.RefereeId">Sudac</label>
