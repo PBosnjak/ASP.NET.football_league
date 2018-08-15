@@ -38,6 +38,7 @@ namespace FootballLeague.Controllers
                 .Include(m => m.AwayTeam)
                 .Include(m => m.HomeTeam)
                 .Include(m => m.Referee)
+                .Include(m => m.Season)
                 .Single(m => m.Id == id);
 
             return View(Model);
@@ -49,6 +50,7 @@ namespace FootballLeague.Controllers
             DataViewModel Model = new DataViewModel();
             Model.Clubs = _db.Clubs.ToList();
             Model.Referees = _db.Referees.ToList();
+            Model.Seasons = _db.Seasons.ToList();
             return View(Model);
         }
 
@@ -56,7 +58,6 @@ namespace FootballLeague.Controllers
         [HttpPost]
         public IActionResult Details(DataViewModel Model)
         {
-            Model.Match.Season = "2017/18";
             _db.Matches.Add(Model.Match);
             _db.SaveChanges();
 
@@ -101,10 +102,12 @@ namespace FootballLeague.Controllers
                 .Include(m => m.AwayTeam)
                 .Include(m => m.HomeTeam)
                 .Include(m => m.Referee)
+                .Include(m => m.Season)
                 .Single(m => m.Id == id);
 
             Model.Clubs = _db.Clubs.ToList();
             Model.Referees = _db.Referees.ToList();
+            Model.Seasons = _db.Seasons.ToList();
 
             return View(Model);
         }
@@ -133,6 +136,11 @@ namespace FootballLeague.Controllers
                     match.Date = Model.Match.Date;
                     _db.SaveChanges();
                 }
+                if (match.SeasonId != Model.Match.SeasonId)
+                {
+                    match.SeasonId = Model.Match.SeasonId;
+                    _db.SaveChanges();
+                }
                 DataViewModel DataModel = new DataViewModel();
                 DataModel = Model;
                 DataModel.Players = _db.Players
@@ -159,6 +167,7 @@ namespace FootballLeague.Controllers
                 match.AwayTeamRedCards = Model.Match.AwayTeamRedCards;
                 match.RefereeId = Model.Match.RefereeId;
                 match.Date = Model.Match.Date;
+                match.SeasonId = Model.Match.SeasonId;
 
                 DataViewModel DataModel = new DataViewModel();
                 DataModel = Model;

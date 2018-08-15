@@ -14,6 +14,7 @@ namespace FootballLeague.Models
         public DbSet<RefereeModel> Referees { get; set; }
         public DbSet<GoalModel> Goals { get; set; }
         public DbSet<CardModel> Cards { get; set; }
+        public DbSet<SeasonModel> Seasons { get; set; }
 
         public DataContext(DbContextOptions<DataContext> options)
             :base(options)
@@ -38,7 +39,6 @@ namespace FootballLeague.Models
                 .HasOne(p => p.Player)
                 .WithMany(g => g.Goals)
                 .OnDelete(DeleteBehavior.Restrict);
-
         }
 
         public override int SaveChanges()

@@ -86,6 +86,7 @@ namespace FootballLeague.Controllers
                 .OrderByDescending(x => x.Date)
                 .Include(x => x.HomeTeam)
                 .Include(x => x.AwayTeam)
+                .Include(x => x.Season)
                 .Skip(pageSize * page)
                 .Take(pageSize)
                 .ToList();

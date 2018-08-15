@@ -66,6 +66,17 @@
             <input asp-for="Match.Date" type='text' class="date-time-picker" />
         </div>
     </div>
+    <div class="form-group">
+        <label asp-for="Match.SeasonId">Sezona</label>
+        <select asp-for="Match.SeasonId">
+            @foreach (var item in Model.Seasons)
+            {
+                <option value="@Html.Raw(item.Id)">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </option>
+            }
+        </select>
+    </div>
     <div>
         <label>&nbsp;</label>
         <button type="submit" class="btn btn-primary">Dalje</button>

@@ -4,7 +4,7 @@
 }
 <h2>@ViewData["Title"]</h2>
 
-<p class="pager">
+<div class="pager">
     @if (ViewBag.HasPreviousPage)
     {
         <a class="btn btn-primary navbar-brand" href="@Url.Action("Results", "Home", new { page = ViewBag.PreviousPage })">
@@ -18,7 +18,7 @@
             Naprijed &gt;
         </a>
     }
-</p>
+</div>
 <div>
     @if (User.IsInRole("admin"))
     {
