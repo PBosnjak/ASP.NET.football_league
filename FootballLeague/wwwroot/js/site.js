@@ -8,4 +8,10 @@
         return false;
     });
 
+    $(function () {
+        $('.date-time-picker').datetimepicker({
+            locale: 'hr'
+        });
+    });
+
 });

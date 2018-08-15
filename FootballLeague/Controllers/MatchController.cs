@@ -128,6 +128,11 @@ namespace FootballLeague.Controllers
                     match.RefereeId = Model.Match.RefereeId;
                     _db.SaveChanges();
                 }
+                if (match.Date != Model.Match.Date)
+                {
+                    match.Date = Model.Match.Date;
+                    _db.SaveChanges();
+                }
                 DataViewModel DataModel = new DataViewModel();
                 DataModel = Model;
                 DataModel.Players = _db.Players
@@ -153,6 +158,7 @@ namespace FootballLeague.Controllers
                 match.AwayTeamYellowCards = Model.Match.AwayTeamYellowCards;
                 match.AwayTeamRedCards = Model.Match.AwayTeamRedCards;
                 match.RefereeId = Model.Match.RefereeId;
+                match.Date = Model.Match.Date;
 
                 DataViewModel DataModel = new DataViewModel();
                 DataModel = Model;

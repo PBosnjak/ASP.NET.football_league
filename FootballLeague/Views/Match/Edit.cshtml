@@ -20,13 +20,13 @@
         </select>
         <br />
         <label asp-for="Match.HomeTeamGoals">Domaćin količina golova</label>
-        <input asp-for="Match.HomeTeamGoals" type="number"  min="0"/>
+        <input asp-for="Match.HomeTeamGoals" type="number" min="0" />
         <br />
         <label asp-for="Match.HomeTeamYellowCards">Domaćin količina žutih kartona</label>
-        <input asp-for="Match.HomeTeamYellowCards" type="number" min="0"/>
+        <input asp-for="Match.HomeTeamYellowCards" type="number" min="0" />
         <br />
         <label asp-for="Match.HomeTeamRedCards">Domaćin količina crvenih kartona</label>
-        <input asp-for="Match.HomeTeamRedCards" type="number" min="0"/>
+        <input asp-for="Match.HomeTeamRedCards" type="number" min="0" />
     </div>
 
     <div class="form-group">
@@ -44,10 +44,10 @@
         <input asp-for="Match.AwayTeamGoals" type="number" min="0" />
         <br />
         <label asp-for="Match.AwayTeamYellowCards">Gost količina žutih kartona</label>
-        <input asp-for="Match.AwayTeamYellowCards" type="number" min="0"/>
+        <input asp-for="Match.AwayTeamYellowCards" type="number" min="0" />
         <br />
         <label asp-for="Match.AwayTeamRedCards">Gost količina crvenih kartona</label>
-        <input asp-for="Match.AwayTeamRedCards" type="number" min="0"/>
+        <input asp-for="Match.AwayTeamRedCards" type="number" min="0" />
     </div>
     <div class="form-group">
         <label asp-for="Match.RefereeId">Sudac</label>
@@ -59,6 +59,12 @@
                 </option>
             }
         </select>
+    </div>
+    <div class="form-group">
+        <div class='input-group date'>
+            <label asp-for="Match.Date">Datum</label>
+            <input asp-for="Match.Date" type='text' class="date-time-picker" />
+        </div>
     </div>
     <div>
         <label>&nbsp;</label>
