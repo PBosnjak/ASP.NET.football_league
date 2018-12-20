@@ -12,10 +12,13 @@ namespace FootballLeague.Controllers
     public class HomeController : Controller
     {
         private readonly DataContext _db;
+        private readonly IClubRepository ClubRepository;
 
-        public HomeController(DataContext db)
+
+        public HomeController(DataContext db, IClubRepository clubRepository)
         {
             _db = db;
+            ClubRepository = clubRepository;
         }
         public IActionResult Index()
         {
@@ -100,6 +103,18 @@ namespace FootballLeague.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<IActionResult> Club()
+        {
+            var klub = new ClubModel()
+            {
+                Country = "hrv",
+                Name = "inker"
+            };
+
+            await ClubRepository.Create(klub);
+            return RedirectToAction("Index");
         }
 
     }

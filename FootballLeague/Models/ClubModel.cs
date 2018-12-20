@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.Models
 {
-    public class ClubModel : BaseModel
+    public class ClubModel : BaseModel, IEntity
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
 
